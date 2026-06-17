@@ -5,13 +5,54 @@
 html,
 body {
   width: 100dvw;
-  overflow: hidden;
   height: 100dvh;
-  background-image: url("/images/wallpaper.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  overflow: hidden;
+  margin: 0;
+  position: relative;
 }
+
+/* Blurred wallpaper */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image: url("/images/wallpaper3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: blur(3px);
+  transform: scale(1.05);
+  z-index: -3;
+}
+.leaf {
+  position: fixed;
+  bottom: -50px;
+  
+  width: 600px;
+  height: 300px;
+
+  background-image: url("/images/black-leaf.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+
+  z-index: -2; /* above wallpaper, below windows */
+  pointer-events: none;
+}
+
+.leaf-left {
+  left: -250px; 
+  transform: scaleX(-1);
+}
+
+.leaf-right {
+  right: -250px;
+ 
+}
+
+
 
 @theme {
   --font-georama: "Georama", sans-serif;
@@ -106,11 +147,11 @@ body {
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030];
+      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer; 
     }
 
     .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42];
+      @apply size-3.5 rounded-full bg-[#2acb42] cursor-pointer;
     }
   }
 
