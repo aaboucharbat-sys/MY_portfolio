@@ -29,7 +29,7 @@ body::before {
 .leaf {
   position: fixed;
   bottom: -50px;
-  
+
   width: 600px;
   height: 300px;
 
@@ -43,16 +43,35 @@ body::before {
 }
 
 .leaf-left {
-  left: -250px; 
+  left: -250px;
   transform: scaleX(-1);
 }
 
 .leaf-right {
   right: -250px;
- 
 }
 
+/* Small-device adjustments (phones / narrow tablets) */
+@media (max-width: 639px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
 
+  .leaf {
+    width: 320px;
+    height: 160px;
+  }
+
+  .leaf-left {
+    left: -140px;
+  }
+
+  .leaf-right {
+    right: -140px;
+  }
+}
 
 @theme {
   --font-georama: "Georama", sans-serif;
@@ -78,7 +97,7 @@ body::before {
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none max-sm:flex-wrap max-sm:px-3 max-sm:py-2 max-sm:gap-2;
 
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -120,10 +139,10 @@ body::before {
   }
 
   #dock {
-    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
+    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:bottom-2 max-sm:w-[94vw] max-sm:flex max-sm:justify-center;
 
     .dock-container {
-      @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
+      @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5 max-sm:p-1 max-sm:gap-1;
     }
 
     .tooltip {
@@ -131,7 +150,7 @@ body::before {
     }
 
     .dock-icon {
-      @apply size-14 3xl:size-20 cursor-pointer;
+      @apply size-14 3xl:size-20 cursor-pointer max-sm:size-9;
 
       img {
         @apply object-cover object-center;
@@ -147,7 +166,7 @@ body::before {
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer; 
+      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer;
     }
 
     .maximize {
@@ -156,14 +175,14 @@ body::before {
   }
 
   #window-header {
-    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400;
+    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400 max-sm:px-3 max-sm:py-2 max-sm:text-xs;
   }
 
   #safari {
-    @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-[94vw] max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-4 max-sm:max-h-[88vh] max-sm:overflow-y-auto;
 
     .search {
-      @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2;
+      @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2 max-sm:w-full;
 
       input {
         @apply placeholder:text-gray-400;
@@ -171,21 +190,21 @@ body::before {
     }
 
     .blog {
-      @apply bg-white p-10 max-w-3xl mx-auto;
+      @apply bg-white p-10 max-w-3xl mx-auto max-sm:p-4;
 
       h2 {
-        @apply text-xl font-bold text-pink-600 mb-10;
+        @apply text-xl font-bold text-pink-600 mb-10 max-sm:mb-5;
       }
 
       .blog-post {
-        @apply grid grid-cols-12 space-x-5;
+        @apply grid grid-cols-12 space-x-5 max-sm:grid-cols-1 max-sm:space-x-0 max-sm:gap-3 max-sm:mb-5;
 
         img {
-          @apply size-full rounded-md object-cover;
+          @apply size-full rounded-md object-cover max-sm:h-44 max-sm:w-full;
         }
 
         .content {
-          @apply col-span-10 space-y-3;
+          @apply col-span-10 space-y-3 max-sm:col-span-1;
 
           p {
             @apply text-xs text-gray-500;
@@ -204,21 +223,21 @@ body::before {
   }
 
   #terminal {
-    @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-[94vw] max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-4 max-sm:max-h-[88vh] max-sm:overflow-y-auto;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
     }
 
     .techstack {
-      @apply text-sm font-roboto p-5;
+      @apply text-sm font-roboto p-5 max-sm:p-3;
 
       .label {
-        @apply flex items-center ms-10 mt-7;
+        @apply flex items-center ms-10 mt-7 max-sm:ms-2 max-sm:mt-4;
       }
 
       .content {
-        @apply py-5 my-5 border-y border-dashed space-y-1;
+        @apply py-5 my-5 border-y border-dashed space-y-1 max-sm:py-3 max-sm:my-3;
 
         li {
           .check {
@@ -226,11 +245,11 @@ body::before {
           }
 
           h3 {
-            @apply font-semibold text-[#00A154] w-32 ms-5;
+            @apply font-semibold text-[#00A154] w-32 ms-5 max-sm:ms-2 max-sm:w-24;
           }
 
           ul {
-            @apply flex items-center gap-3;
+            @apply flex items-center gap-3 max-sm:flex-wrap max-sm:gap-2;
           }
         }
       }
@@ -242,7 +261,7 @@ body::before {
           @apply flex items-center;
 
           svg {
-            @apply w-5 me-5;
+            @apply w-5 me-5 max-sm:me-2;
           }
         }
       }
@@ -250,7 +269,7 @@ body::before {
   }
 
   #contact {
-    @apply max-w-2xl absolute top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-2xl absolute top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-[94vw] max-sm:max-w-[94vw] max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-4 max-sm:max-h-[88vh] max-sm:overflow-y-auto;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -261,10 +280,10 @@ body::before {
     }
 
     ul {
-      @apply flex items-center gap-3;
+      @apply flex items-center gap-3 max-sm:flex-col max-sm:gap-2;
 
       li {
-        @apply rounded-lg p-3 w-60 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300;
+        @apply rounded-lg p-3 w-60 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300 max-sm:w-full;
 
         a {
           @apply space-y-5;
@@ -278,18 +297,20 @@ body::before {
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-[94vw] max-sm:max-w-[94vw] max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:translate-y-0 max-sm:top-4 max-sm:max-h-[88vh] max-sm:overflow-y-auto max-sm:flex max-sm:flex-col;
 
     .sidebar {
-      @apply w-3/12 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5;
+      @apply w-3/12 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5 max-sm:w-full max-sm:border-r-0 max-sm:border-b max-sm:p-3 max-sm:flex-row max-sm:items-center max-sm:overflow-x-auto max-sm:gap-3;
 
       h2 {
-        @apply text-xs font-medium text-gray-400 mb-1;
+        @apply text-xs font-medium text-gray-400 mb-1 max-sm:mb-0 max-sm:whitespace-nowrap;
       }
 
       ul {
+        @apply max-sm:flex max-sm:gap-2;
+
         li {
-          @apply flex space-y-1 items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors;
+          @apply flex space-y-1 items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors max-sm:whitespace-nowrap max-sm:py-1;
 
           &:first-child {
             @apply bg-blue-100 text-blue-700;
@@ -307,30 +328,30 @@ body::before {
     }
 
     .gallery {
-      @apply p-5;
+      @apply p-5 max-sm:p-3;
 
       ul {
-        @apply grid grid-cols-5 grid-rows-5 gap-2.5;
+        @apply grid grid-cols-5 grid-rows-5 gap-2.5 max-sm:grid-cols-2 max-sm:grid-rows-none max-sm:gap-2;
 
         li {
           img {
-            @apply size-full object-cover rounded-lg;
+            @apply size-full object-cover rounded-lg max-sm:h-32;
           }
 
           &:first-child {
-            @apply row-start-1 row-span-3 col-start-1 col-span-3;
+            @apply row-start-1 row-span-3 col-start-1 col-span-3 max-sm:row-auto max-sm:col-auto max-sm:row-span-1 max-sm:col-span-2;
           }
 
           &:nth-child(2) {
-            @apply row-start-1 row-span-3 col-start-4 col-span-2;
+            @apply row-start-1 row-span-3 col-start-4 col-span-2 max-sm:row-auto max-sm:col-auto max-sm:row-span-1 max-sm:col-span-1;
           }
 
           &:nth-child(3) {
-            @apply row-start-4 row-span-2 col-start-3 col-span-3;
+            @apply row-start-4 row-span-2 col-start-3 col-span-3 max-sm:row-auto max-sm:col-auto max-sm:row-span-1 max-sm:col-span-1;
           }
 
           &:last-child {
-            @apply row-start-4 row-span-2 col-start-1 col-span-2;
+            @apply row-start-4 row-span-2 col-start-1 col-span-2 max-sm:row-auto max-sm:col-auto max-sm:row-span-1 max-sm:col-span-1;
           }
         }
       }
@@ -338,7 +359,7 @@ body::before {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-[94vw] max-sm:h-auto max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-4 max-sm:max-h-[88vh] max-sm:overflow-y-auto;
 
     #window-header {
       h2 {
@@ -348,17 +369,17 @@ body::before {
   }
 
   #finder {
-    @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl;
+    @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl max-sm:w-[94vw] max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-4 max-sm:max-h-[88vh] max-sm:overflow-y-auto max-sm:flex max-sm:flex-col;
 
     .sidebar {
-      @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3;
+      @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3 max-sm:w-full max-sm:border-r-0 max-sm:border-b max-sm:flex-row max-sm:items-center max-sm:p-3 max-sm:space-y-0 max-sm:gap-3 max-sm:overflow-x-auto;
 
       h3 {
-        @apply text-xs font-medium text-gray-400 mb-1;
+        @apply text-xs font-medium text-gray-400 mb-1 max-sm:mb-0 max-sm:whitespace-nowrap;
       }
 
       ul {
-        @apply space-y-1;
+        @apply space-y-1 max-sm:flex max-sm:space-y-0 max-sm:gap-2;
 
         .active {
           @apply bg-blue-100 text-blue-700;
@@ -369,30 +390,30 @@ body::before {
         }
 
         li {
-          @apply flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors;
+          @apply flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors max-sm:whitespace-nowrap max-sm:py-1;
         }
       }
     }
 
     .content {
-      @apply flex-1 p-8 bg-white max-w-2xl relative;
+      @apply flex-1 p-8 bg-white max-w-2xl relative max-sm:p-4 max-sm:max-w-full max-sm:flex max-sm:flex-wrap max-sm:justify-center max-sm:gap-5;
 
       li {
-        @apply absolute flex items-center flex-col gap-3;
+        @apply absolute flex items-center flex-col gap-3 max-sm:!static max-sm:gap-2;
 
         img {
-          @apply object-contain object-center size-16 relative group-hover:scale-105;
+          @apply object-contain object-center size-16 relative group-hover:scale-105 max-sm:size-12;
         }
 
         p {
-          @apply text-sm text-center font-medium w-40;
+          @apply text-sm text-center font-medium w-40 max-sm:w-24 max-sm:text-xs;
         }
       }
     }
   }
 
   #txtfile {
-    @apply w-md absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-md absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-[94vw] max-sm:right-auto max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-4 max-sm:max-h-[88vh] max-sm:overflow-y-auto;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -400,7 +421,7 @@ body::before {
   }
 
   #imgfile {
-    @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-[94vw] max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:top-4 max-sm:max-h-[88vh] max-sm:overflow-y-auto;
 
     #window-header {
       p {
@@ -409,7 +430,7 @@ body::before {
     }
 
     .preview {
-      @apply p-2 bg-gray-200 max-h-[70vh];
+      @apply p-2 bg-gray-200 max-h-[70vh] max-sm:max-h-[55vh];
 
       img {
         @apply w-full h-fit object-contain object-center;
@@ -418,18 +439,20 @@ body::before {
   }
 
   #home {
-    @apply relative z-0 max-sm:hidden;
+    @apply relative z-0;
 
     ul {
+      @apply max-sm:flex max-sm:flex-wrap max-sm:content-start max-sm:justify-center max-sm:gap-4 max-sm:p-4 max-sm:pt-16;
+
       li {
-        @apply absolute z-0 select-none flex items-center flex-col;
+        @apply absolute z-0 select-none flex items-center flex-col max-sm:!static max-sm:w-20;
 
         img {
           @apply group-hover:bg-gray-950/10 p-1 rounded-md;
         }
 
         p {
-          @apply text-sm text-white text-center px-1 rounded-md group-hover:bg-blue-500 transition-colors max-w-40;
+          @apply text-sm text-white text-center px-1 rounded-md group-hover:bg-blue-500 transition-colors max-w-40 max-sm:text-xs;
         }
       }
     }
